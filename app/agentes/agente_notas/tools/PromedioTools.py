@@ -6,11 +6,14 @@ promedio_service = PromedioService()
 
 
 @tool
-def promedio_estudiante():
+def promedio_estudiante(nombre_programa: str = None):
     """
-    Devuelve únicamente el promedio acumulado o general del estudiante.
-    Ejemplo: ¿Cuál es mi promedio?
+    Devuelve el promedio acumulado del estudiante.
+    
+    - Si no se especifica programa → lista todos los programas.
+    - Si se especifica programa → devuelve solo ese programa.
     """
+
     id_estudiante = get_id_estudiante()
 
     if not id_estudiante:
@@ -19,4 +22,7 @@ def promedio_estudiante():
             "message": "No se identificó al estudiante"
         }
 
-    return promedio_service.obtener_promedio_estudiante(id_estudiante)
+    return promedio_service.obtener_promedio_estudiante(
+        id_estudiante=id_estudiante,
+        nombre_programa=nombre_programa
+    )

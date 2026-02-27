@@ -25,7 +25,7 @@ class CreditosService:
             headers = get_headers()
 
             resp = requests.get(
-                url=f"{get_base_url()}/servicios-banner-dos/cumplimientoCursos",
+                url=f"{get_base_url()}/servicios-banner/cumplimientoCursos",
                 params=params,
                 headers=headers,
                 timeout=60
@@ -83,6 +83,7 @@ class CreditosService:
                 "materia": m.get("NOMBRE_CURSO"),
                 "creditos": int(m.get("CRED_CURSO", 0)),
                 "sem_terminado": m.get("SEM_TERMINADO"),
+                "advertencia": "Los creditos pueden estar desactualizados, se recomienda consultar en las plataformas oficiales de la universidad.",
             }
             for m in data
         ]
@@ -94,6 +95,7 @@ class CreditosService:
                 "creditos": int(m.get("CRED_CURSO", 0)),
                 "nota": m.get("NOTA_CURSO"),
                 "periodo": m.get("PERIODO"),
+                "advertencia": "Los creditos pueden estar desactualizados, se recomienda consultar en las plataformas oficiales de la universidad.",
             }
             for m in data
         ]
@@ -101,7 +103,9 @@ class CreditosService:
     def normalizar_pendientes(self, data):
         return [
             {
-                "materia": m.get("NOMBRE_CURSO")
+                "materia": m.get("NOMBRE_CURSO"),
+                "creditos": int(m.get("CRED_MAT", 0)),
+                "advertencia": "Los creditos pueden estar desactualizados, se recomienda consultar en las plataformas oficiales de la universidad.",
             }
             for m in data
         ]
@@ -119,7 +123,9 @@ class CreditosService:
             "error": False,
             "aprobados": sum(int(m.get("CRED_CURSO", 0)) for m in data["cursadas"]),
             "perdidos": sum(int(m.get("CRED_CURSO", 0)) for m in data["perdidas"]),
-            "pendientes": sum(int(m.get("CRED_CURSO", 0)) for m in data["pendientes"]),
+            "pendientes": sum(int(m.get("CRED_MAT", 0)) for m in data["pendientes"]),
+            # "total": sum(int(m.get("CRED_CURSO", 0)) for m in data["cursadas"])- sum(int(m.get("CRED_MAT", 0)) for m in data["pendientes"]),
+            "advertencia": "Los creditos pueden estar desactualizados, se recomienda consultar en las plataformas oficiales de la universidad.",
         }
 
     def obtener_materias_por_estado(self, id_estudiante: str):
@@ -137,6 +143,7 @@ class CreditosService:
             "cursadas": self.normalizar_cursadas(data["cursadas"]),
             "perdidas": self.normalizar_perdidas(data["perdidas"]),
             "pendientes": self.normalizar_pendientes(data["pendientes"]),
+            "advertencia": "Los creditos pueden estar desactualizados, se recomienda consultar en las plataformas oficiales de la universidad.",
         }
 
     def buscar_creditos_materia(self, id_estudiante: str, nombre_materia: str):
