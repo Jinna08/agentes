@@ -279,3 +279,9 @@ Todos los agentes cuentan con una estructura base de body request como la siguie
     "programa": "ingenieria"
 }
 ```
+
+## Autores
+
+>- **Juan David Casallas**
+>- **Jinna Lorena Rojas** 
+---

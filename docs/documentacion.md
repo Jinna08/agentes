@@ -73,8 +73,7 @@ uv run fastapi dev
 uv run uvicorn main:app --host 0.0.0.0 --port 3000 --reload
 ```
 
-> El modo desarrollo incluye **hot reload** (recarga automática al detectar cambios en el código)
-> 
+> **Nota:** El modo desarrollo incluye **hot reload** (recarga automática al detectar cambios en el código)
 
 #### Ejecutar servidor en modo produccion
 
@@ -94,8 +93,7 @@ uv run fastapi run
 uv run uvicorn main:app --host 0.0.0.0 --port 3000
 ```
 
-> El modo producción **NO** incluye hot reload y está optimizado para entornos de producción
-> 
+> **Nota:** El modo producción **NO** incluye hot reload y está optimizado para entornos de producción
 
 ### Variables de Entorno Requeridas
 
@@ -144,6 +142,8 @@ Endpoints para consultar información del estudiante.
 | Variable | Descripción | Variable |
 |----------|-------------|---------|
 | `POSTGRES_CONNECTION_STRING` | URI de conexión a PostgreSQL | `postgresql://postgres:admin@localhost:5433/agentes_db`|
+| `AUTO_INIT_DB` | Ejecuta `init_db()` al iniciar para crear tablas faltantes | `true`|
+
 
 #### 📝 Ejemplo de archivo .env
 
@@ -168,6 +168,7 @@ apikey=ITnjVcrLWfYpY2B246EcrWO6Hln3LD7a
 
 # Base de Datos
 POSTGRES_CONNECTION_STRING=postgresql://postgres:admin@localhost:5433/agentes_db
+AUTO_INIT_DB=true
 ```
 
 ---
@@ -500,7 +501,7 @@ El sistema implementa un control de acceso basado en roles que define qué usuar
 Se definen modelos Pydantic en `app/schemas` para validar las solicitudes entrantes. Cada solicitud debe incluir:
 
 - `prompt`: La pregunta o consulta
-- `user_id`: Identificación del usuario
+- `id_usuario`: Identificación del usuario
 - `role`: Rol del usuario
 - `model` (opcional): Modelo de IA a usar
 
@@ -588,6 +589,11 @@ Gestiona el almacenamiento y recuperación del historial de conversaciones.
 > 
 
 > **Modelos de IA**: La temperatura 0 se utiliza para respuestas deterministas y precisas.
-> 
+ 
+---
 
+## Autores
+
+>- **Juan David Casallas**
+>- **Jinna Lorena Rojas** 
 ---
