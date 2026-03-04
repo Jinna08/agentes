@@ -21,7 +21,25 @@ def consultar_creditos():
             "message": "No se identificó al estudiante en el contexto."
         }
 
-    return service.obtener_resumen_creditos(id_final)
+    data = service.obtener_resumen_creditos(id_final)
+
+    if data.get("error"):
+        return data
+
+    # Devolver tanto los valores estructurados como un mensaje textual
+    aprobados = data.get("aprobados")
+    perdidos = data.get("perdidos")
+    pendientes = data.get("pendientes")
+    advertencia = data.get("advertencia")
+
+    return {
+        "error": False,
+        "aprobados": aprobados,
+        "perdidos": perdidos,
+        "pendientes": pendientes,
+        "advertencia": advertencia,
+        "message": f"Tienes {pendientes} créditos pendientes. {advertencia}"
+    }
 
 @tool
 def materias_perdidas():
@@ -38,7 +56,7 @@ def materias_perdidas():
     if data.get("error"):
         return data
 
-    return {"perdidas": data["perdidas"]}
+    return {"perdidas": data["perdidas"], "advertencia": data.get("advertencia")}
 
 @tool
 def materias_pendientes():
@@ -55,7 +73,7 @@ def materias_pendientes():
     if data.get("error"):
         return data
 
-    return {"pendientes": data["pendientes"]}
+    return {"pendientes": data["pendientes"], "advertencia": data.get("advertencia")}
 
 
 @tool
@@ -73,7 +91,7 @@ def materias_cursadas():
     if data.get("error"):
         return data
 
-    return {"cursadas": data["cursadas"]}
+    return {"cursadas": data["cursadas"], "advertencia": data.get("advertencia")}
 
 
 @tool

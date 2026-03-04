@@ -75,6 +75,7 @@ class CreditosService:
             "cursadas": raw.get("cursadas", []),
             "perdidas": raw.get("perdidas", []),
             "pendientes": raw.get("pendientes", []),
+            "advertencia": "Los creditos pueden estar desactualizados, se recomienda consultar en las plataformas oficiales de la universidad.",
         }
 
     def normalizar_cursadas(self, data):
@@ -124,7 +125,6 @@ class CreditosService:
             "aprobados": sum(int(m.get("CRED_CURSO", 0)) for m in data["cursadas"]),
             "perdidos": sum(int(m.get("CRED_CURSO", 0)) for m in data["perdidas"]),
             "pendientes": sum(int(m.get("CRED_MAT", 0)) for m in data["pendientes"]),
-            # "total": sum(int(m.get("CRED_CURSO", 0)) for m in data["cursadas"])- sum(int(m.get("CRED_MAT", 0)) for m in data["pendientes"]),
             "advertencia": "Los creditos pueden estar desactualizados, se recomienda consultar en las plataformas oficiales de la universidad.",
         }
 

@@ -2,7 +2,6 @@ import requests
 from .config import get_promedio_url
 import unicodedata
 
-#normalizar texto para comparaciones
 class PromedioService:
 
     def normalizar_texto(self, texto: str) -> str:

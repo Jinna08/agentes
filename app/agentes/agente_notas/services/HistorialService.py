@@ -38,6 +38,33 @@ suffixes = {
     '62': '-2',
     '61': '-2',
     '60': '-2',
+    '59': '-7',
+    '57': '-5',
+    '54': '-3',
+    '53': '-3',
+    '52': 'Op Grado Dis Ago-Dic',
+    '51': '-3',
+    '50': '-3',
+    '49': '2º Pres May-Ago',
+    '48': '2º Pres May-Ago',
+    '47': 'Op Grado Distanci Abr-Ago',
+    '46': 'Distanci Abr-Ago',
+    '45': 'Distanci Abr-Ago',
+    '36': '-11',
+    '34': '-9',
+    '32': '-7',
+    '30': 'Intersemestral Jun-Jul',
+    '29': '-5',
+    '24': 'Formación Académica',
+    '23': '-11',
+    '22': 'Cursos Nivelatorios',
+    '18': '-9',
+    '16': '-7',
+    '13': '-5',
+    '04': 'Articulación',
+    '03': 'Diplomados',
+    '02': 'Cursos Nivelatorios',
+    '01': 'APERT SP'
 }
  
 class HistorialService:
@@ -152,7 +179,7 @@ class HistorialService:
         return {
             "error": False,
             "tipo_nota": "Parcial",
-            "advertencia": "La nota corresponde a un registro parcial del sistema académico. Se recomienda validar la nota definitiva en la plataforma oficial de la universidad.",
+            "advertencia": "La nota puede corresponder a un registro parcial del sistema académico. Se recomienda validar la nota definitiva en la plataforma oficial de la universidad.",
             "total_veces_cursada": len(coincidencias),
             "resultados": [
                 {

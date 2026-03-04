@@ -11,11 +11,15 @@ logger = get_logger(__name__)
 class CalificacionesService:
 
     suffixes = [
-        "84","69","55","44","43","42","62",
-        "41","40","38","27","25","21","64",
-        "15","12","11","10","07","05","61",
-        "00","97","95","93","91","90","86",
-        "85","80","71","67","65","60"
+        "84","69","55","44","43","42","41","40","38",
+        "27","25","21","15","12","11","10","07","05","00",
+        "97","95","93","91","90","86","85","80","71",
+        "67","65","64","62","61","60",
+        "59","57","54","53","52","51","50",
+        "49","48","47","46","45",
+        "36","34","32","30","29",
+        "24","23","22","18","16","13",
+        "04","03","02","01"
     ]
 
     def obtener_anio_actual(self) -> str:
@@ -48,7 +52,7 @@ class CalificacionesService:
             return data
 
         except requests.exceptions.RequestException as e:
-            logger.warning(f"Error consultando periodo {periodo}: {e}")
+            logger.warning("Error consultando periodo %s: %s", periodo, e)
             return None
 
     def buscar_notas(self, estudiante_id: str)-> list[dict]:
