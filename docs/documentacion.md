@@ -589,6 +589,10 @@ Gestiona el almacenamiento y recuperación del historial de conversaciones.
 > 
 
 > **Modelos de IA**: La temperatura 0 se utiliza para respuestas deterministas y precisas.
+>
+
+> **Inicio del Agente Presupuestal**: Para probar o iniciar el agente de presupuesto, se debe verificar previamente que la API se encuentre en ejecución y que el usuario tenga rol administrativo, ya que el acceso a las funciones presupuestales está restringido a este perfil.
+>
  
 ---
 
