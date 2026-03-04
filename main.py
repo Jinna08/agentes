@@ -2,7 +2,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import uvicorn
-import os
 from app.core.config import settings
 from app.routes import agents, info, openai_api
 
@@ -22,7 +21,10 @@ async def lifespan(app: FastAPI):
 # ======================
 # FastAPI
 # ======================
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(
+    title="Agentes IA",
+    lifespan=lifespan
+)   
 
 # Configurar CORS para permitir solicitudes desde cualquier origen (WebUi)
 app.add_middleware(
