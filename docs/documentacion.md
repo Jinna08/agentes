@@ -171,6 +171,40 @@ POSTGRES_CONNECTION_STRING=postgresql://postgres:admin@localhost:5433/agentes_db
 AUTO_INIT_DB=true
 ```
 
+### 📊 Monitoreo de consumo de tokens (LangSmith)
+
+Si quieres ver el consumo de tokens de los agentes y las llamadas a los modelos, puedes habilitar el trazado con **LangSmith** (servicio oficial de LangChain).
+
+#### Pasos en LangSmith
+
+1. Crear una cuenta en: https://smith.langchain.com
+2. Ir a **Settings → API Keys** y crear una **API Key**.
+3. Ir a **Projects** y crear un proyecto (por ejemplo: `Agentes-IA`).
+
+#### Variables de entorno para LangSmith
+
+Agrega estas variables al archivo `.env` para activar el tracking:
+
+```bash
+# Observabilidad / Trazas LangSmith
+LANGCHAIN_API_KEY="tu_api_key_langsmith"
+LANGCHAIN_TRACING_V2="true"
+LANGSMITH_PROJECT="Agentes-IA"
+```
+
+> **Importante:** reemplaza `tu_api_key_langsmith` por la API Key generada en LangSmith y `Agentes-IA` por el nombre real de tu proyecto si usas otro.
+
+#### ¿Dónde ver los tokens?
+
+1. Ejecuta la API de agentes normalmente (los agentes ya usan LangChain, por lo que al estar configuradas las variables anteriores se enviarán automáticamente las trazas).
+2. En LangSmith ve a **Projects → tu_proyecto → Runs**.
+3. Cada ejecución mostrará:
+  - El modelo usado
+  - El prompt de entrada y la respuesta
+  - El consumo de tokens (prompt_tokens, completion_tokens, total_tokens)
+  - Costos aproximados (si el modelo los reporta)
+
+
 ---
 
 ## Base de Datos y Persistencia
@@ -591,9 +625,9 @@ Gestiona el almacenamiento y recuperación del historial de conversaciones.
 > **Modelos de IA**: La temperatura 0 se utiliza para respuestas deterministas y precisas.
 >
 
-> **Inicio del Agente Presupuestal**: Para probar o iniciar el agente de presupuesto, se debe verificar previamente que la API se encuentre en ejecución y que el usuario tenga rol administrativo, ya que el acceso a las funciones presupuestales está restringido a este perfil.
+> **Inicio del Agente Presupuestal**: Para probar o iniciar el agente de presupuesto, se debe verificar previamente que la API se encuentre en ejecución y que el usuario tenga rol 'administrativo', ya que el acceso a las funciones presupuestales está restringido a este perfil.
 >
- 
+
 ---
 
 ## Autores

@@ -280,6 +280,12 @@ Todos los agentes cuentan con una estructura base de body request como la siguie
 }
 ```
 
+## 📚 Documentación completa
+
+Para una descripción detallada de la arquitectura, modelos y endpoints, consulta la documentación completa en:
+
+- [docs/documentacion.md](docs/documentacion.md)
+
 ## Autores
 
 >- **Juan David Casallas**
