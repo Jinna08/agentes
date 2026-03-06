@@ -53,8 +53,8 @@ class Settings(BaseSettings):
     
     #Agente de Notas
     API_HISTORIAL: str | None = None
-    API_CREDITOS: str | None = None
-    API_CURSOS_CALIFICACIONES: str | None = None
+    #API_CREDITOS: str | None = None
+    #API_CURSOS_CALIFICACIONES: str | None = None
     API_NOTAS: str | None = None
     API_PROMEDIO: str | None = None
     

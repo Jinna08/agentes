@@ -126,7 +126,7 @@ async def agente_notas_endpoint(request: RequestAgentes) -> ResponseAgentes:
             # IMPORTANTE: Apuntar a los endpoints específicos para asegurar que el pipeline se despierte
             # aunque devuelva 400 por falta de parámetros.
             urls_warmup = [
-                f"{base_url}/servicios-banner-dos/cumplimientoCursos",
+                f"{base_url}/servicios-banner/cumplimientoCursos",
                 f"{base_url}/servicios-banner/consultaCursos",
                 f"{base_url}/servicios-banner/calificacionActual"
             ]
@@ -147,7 +147,7 @@ async def agente_notas_endpoint(request: RequestAgentes) -> ResponseAgentes:
         base_url = settings.API_NOTAS
         if base_url:
             urls_warmup = [
-                f"{base_url}/servicios-banner-dos/cumplimientoCursos",
+                f"{base_url}/servicios-banner/cumplimientoCursos",
                 f"{base_url}/servicios-banner/consultaCursos",
                 f"{base_url}/servicios-banner/calificacionActual"
             ]
